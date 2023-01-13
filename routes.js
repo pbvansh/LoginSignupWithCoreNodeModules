@@ -28,8 +28,16 @@ const LOGIN = async (req, res) => {
     res.end();
 }
 
-module.exports = {
-    SIGNUP, LOGIN
+const LISTOFUSERS = async (req, res) => {
+    const users = await readDataBase();
+    res.write(JSON.stringify(users));
+    res.end()
 }
 
-// [{"email":"pratik@gmail.com","password":"pratik123"},{"email":"pratik1@gmail.com","password":"pratik1235"}]
+const GETSINGLEUSER = (req, res) => {
+    res.end()
+}
+
+module.exports = {
+    SIGNUP, LOGIN, LISTOFUSERS, GETSINGLEUSER
+}

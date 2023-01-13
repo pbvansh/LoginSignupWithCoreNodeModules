@@ -1,1 +1,10 @@
-[{"email":"pratik@gmail.com","password":"pratik123"},{"email":"pratik2@gmail.com","password":"mitv"}]
+[
+    {
+        "email": "pratik@gmail.com",
+        "password": "pratik123"
+    },
+    {
+        "email": "pratik2@gmail.com",
+        "password": "mitv"
+    }
+]

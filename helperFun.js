@@ -2,13 +2,13 @@ const fs = require('fs/promises')
 
 const getReqBodyData = async (req) => {
     try {
-        return new Promise((res, rej) => {
+        return new Promise((resolve, rej) => {
             let data = []
             req.on('data', (chunk) => {
                 data.push(chunk)
             })
             req.on('end', () => {
-                res(JSON.parse(data))
+                resolve(JSON.parse(data))
             })
         })
     } catch (err) {
