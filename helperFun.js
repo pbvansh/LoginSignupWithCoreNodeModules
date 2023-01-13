@@ -52,6 +52,17 @@ const isUniqueUser = async (user, database, res) => {
 
 }
 
+const checkUserCredential = async (user, database) => {
+    return new Promise((resolve, rej) => {
+        const ans = database.some((DBuser) => {
+            if (DBuser.email === user.email && DBuser.password === user.password) {
+                return true
+            }
+        })
+        resolve(ans);
+    })
+}
+
 const addNewUser = async (user, database) => {
     console.log(user);
     console.log(database.length);
@@ -63,5 +74,6 @@ module.exports = {
     getReqBodyData,
     readDataBase,
     isUniqueUser,
-    addNewUser
+    addNewUser,
+    checkUserCredential
 }

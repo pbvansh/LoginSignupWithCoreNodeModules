@@ -1,4 +1,4 @@
-const { getReqBodyData, readDataBase, isUniqueUser, addNewUser } = require("./helperFun")
+const { getReqBodyData, readDataBase, isUniqueUser, addNewUser, checkUserCredential } = require("./helperFun")
 
 const SIGNUP = async (req, res) => {
     const details = await getReqBodyData(req)
@@ -17,8 +17,14 @@ const SIGNUP = async (req, res) => {
 }
 
 const LOGIN = async (req, res) => {
-    const data = await readDataBase();
-    console.log(data);
+    const credential = await getReqBodyData(req)
+    const database = await readDataBase();
+    const valid = await checkUserCredential(credential, database)
+    if (valid) {
+        res.write('\nLogin Successfully..')
+    } else {
+        res.write('\nInvalid Creadintials..')
+    }
     res.end();
 }
 
