@@ -30,12 +30,15 @@ const LOGIN = async (req, res) => {
 
 const LISTOFUSERS = async (req, res) => {
     const users = await readDataBase();
-    res.write(JSON.stringify(users));
-    res.end()
+    res.end(JSON.stringify(users))
 }
 
-const GETSINGLEUSER = (req, res) => {
-    res.end()
+const GETSINGLEUSER = async (req, res, email) => {
+    const users = await readDataBase();
+    const data = users ? users.filter((obj) => {
+        return email === obj.email;
+    }) : null;
+    data.length > 0 ? res.end('\n' + JSON.stringify(data)) : res.end('\n' + email + ' is not exist.')
 }
 
 module.exports = {
